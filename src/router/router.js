@@ -31,11 +31,15 @@ const routes = [
     component: () => import(/* webpackChunkName: "EditarOpinion" */ '../views/EditarOpinion.vue'),
     props: true
   },
+  // {
+  //   path: '/paginacionprueba',
+  //   name: 'PaginacionPrueba',
+  //   component: () => import(/* webpackChunkName: "PaginacionPrueba" */ '../views/PaginacionPrueba.vue')
+  // },
   {
-    path: '/paginacionprueba',
-    name: 'PaginacionPrueba',
-    component: () => import(/* webpackChunkName: "PaginacionPrueba" */ '../views/PaginacionPrueba.vue'),
-    props: true
+    path: '*',
+    name: 'NotFound',
+    component: () => import(/* webpackChunkName: "NotFound" */'../views/NotFound')
   },
   {
     path: '/about',

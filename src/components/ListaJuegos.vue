@@ -1,6 +1,16 @@
 <template>
     <section class="container" >
         <br>
+        <!-- paginacion -->
+        <!-- <nav aria-label="Page navigation example text-center">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+                    <li class="page-item" value="1"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item" value="2"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item" value="3"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+            </ul>
+        </nav>  -->
         <!-- todos los juegos -->
         <div class="row text-center">            
             <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 my-3" v-for="(item,index) in enviarDatosApi" :key="index">
@@ -88,11 +98,6 @@
                 </div>
             </div>
         </div>
-
-          
-        
-
-
 
     </section>
 </template>

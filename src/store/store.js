@@ -10,7 +10,7 @@ export default new Vuex.Store({
     datosApi: [],
     favorito: [],
     opiniones:[],
-    NumPag: [1,2,3,4,5]
+    NumPag: []
   },
   getters: {
     // envia los datos de la api
@@ -71,7 +71,7 @@ export default new Vuex.Store({
     // conecta con la api y lo transforma en un json
     async llamadoAPI({commit}){
       try {
-        let result = await fetch('https://api.rawg.io/api/games?page=3')
+        let result = await fetch('https://api.rawg.io/api/games?page=2')
         // let result = await fetch(`https://api.rawg.io/api/games?page=${this.state.NumPag[0]}`)
         let datos = await result.json();
         commit('mutandoDatosApi',datos.results);
