@@ -1,16 +1,6 @@
 <template>
     <section class="container" >
         <br>
-        <!-- paginacion -->
-        <!-- <nav aria-label="Page navigation example text-center">
-            <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
-                    <li class="page-item" value="1"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item" value="2"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item" value="3"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
-            </ul>
-        </nav>  -->
         <!-- todos los juegos -->
         <div class="row text-center">            
             <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 my-3" v-for="(item,index) in enviarDatosApi" :key="index">
@@ -38,16 +28,16 @@
                             <div class="modal-body">
                                 <div>
                                     <p>Tu Usuario:</p>
-                                    <input ref="user" type="text" placeholder="Ingresa tu nombre de Usuario" v-model="item.nombre">
+                                    <input ref="user" type="text" placeholder="Ingresa tu nombre de Usuario" v-model="nombre">
                                 </div>
                                 <div class="mt-2">
                                     <label for="textAreaOpinion">Tu opinión:</label>
-                                    <textarea ref="opinionUser" class="form-control" placeholder="Escriba su opinion" id="textAreaOpinion" v-model="item.textoArea"></textarea>
+                                    <textarea ref="opinionUser" class="form-control" placeholder="Escriba su opinion" id="textAreaOpinion" v-model="textoArea"></textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close" @click="agregarOpinion(item)">Guardar</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" @click="cerrarModal(item)"><font-awesome-icon :icon="['far', 'window-close']"/></button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" @click="cerrarModal"><font-awesome-icon :icon="['far', 'window-close']"/></button>
                             </div>
                         </div>
                     </div>
@@ -96,7 +86,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -104,8 +93,9 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
 import Swal from 'sweetalert2';
+import { mapGetters, mapActions } from "vuex";
+// import { mapGetters } from "vuex";
 
 export default {
     name: 'ListaJuegos',
@@ -121,7 +111,7 @@ export default {
     methods: {
         ...mapActions(['agregandoFavoritos']),
         agregarOpinion(item){
-            if (item.nombre !== null && item.textoArea !== null && item.id !== null && item.nombreGame !== null && item.nombre.length >= 5 && item.textoArea.length >= 5) {
+        if (item.nombre !== null && item.textoArea !== null && this.nombre.length >= 5 && this.textoArea.length >= 5) {
                 let opinion = {
                     id: item.id,
                     nombre: this.nombre,
@@ -132,20 +122,22 @@ export default {
                 this.nombre =''
                 this.textoArea =''
                 this.$router.push({name: 'Opiniones'});
-
             } else {
+                console.log("esta malo");
                 Swal.fire({
                     icon: 'error',
-                    title: 'Error en el Formulario..',
-                    text: 'Debe rellenar ambos campos!',
-                    footer: 'el nombre y la opinion deben tener minimo 5 caracteres'
+                    title: 'Error en el Formulario....',
+                    text: 'Debe completas los campos!',
+                    footer: 'El nombre y la opinion deben tene un min. de 5 caracteres'
                 })
+                this.nombre =''
+                this.textoArea =''
             }
         },
         // resetea los campos con el boron X
-        cerrarModal(item){
-            item.nombre =''
-            item.textoArea =''
+        cerrarModal(){
+            this.nombre =''
+            this.textoArea =''
         }
     },
 }
