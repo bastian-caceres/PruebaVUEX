@@ -96,6 +96,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -104,7 +105,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-// import { mapGetters } from "vuex";
+import Swal from 'sweetalert2';
 
 export default {
     name: 'ListaJuegos',
@@ -120,7 +121,7 @@ export default {
     methods: {
         ...mapActions(['agregandoFavoritos']),
         agregarOpinion(item){
-            if (item.nombre !== null && item.textoArea !== null) {
+            if (item.nombre !== null && item.textoArea !== null && item.id !== null && item.nombreGame !== null && item.nombre.length >= 5 && item.textoArea.length >= 5) {
                 let opinion = {
                     id: item.id,
                     nombre: this.nombre,
@@ -128,12 +129,17 @@ export default {
                     nombreGame: item.name
                 }
                 this.$store.dispatch('agregarOpinion', opinion);
-                this.$router.push({name: 'Opiniones'});
-
                 this.nombre =''
                 this.textoArea =''
+                this.$router.push({name: 'Opiniones'});
+
             } else {
-                console.log("esta malo")
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error en el Formulario..',
+                    text: 'Debe rellenar ambos campos!',
+                    footer: 'el nombre y la opinion deben tener minimo 5 caracteres'
+                })
             }
         },
         // resetea los campos con el boron X

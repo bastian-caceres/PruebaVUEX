@@ -31,11 +31,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "EditarOpinion" */ '../views/EditarOpinion.vue'),
     props: true
   },
-  // {
-  //   path: '/paginacionprueba',
-  //   name: 'PaginacionPrueba',
-  //   component: () => import(/* webpackChunkName: "PaginacionPrueba" */ '../views/PaginacionPrueba.vue')
-  // },
+  {
+    path: '/paginacionprueba',
+    name: 'PaginacionPrueba',
+    component: () => import(/* webpackChunkName: "PaginacionPrueba" */ '../views/PaginacionPrueba.vue')
+  },
   {
     path: '*',
     name: 'NotFound',
