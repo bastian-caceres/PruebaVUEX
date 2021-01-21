@@ -145,7 +145,7 @@ export default {
 
 <style scoped>
     img, video {
-        height: auto;
+        height: 200px;
         width: auto;
     }
 
